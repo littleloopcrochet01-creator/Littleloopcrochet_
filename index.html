@@ -179,6 +179,40 @@
   footer .logo2{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:var(--white);}
   footer p{opacity:.75;font-size:0.85rem;margin-top:10px;}
   footer .email{color:var(--gold);}
+  brand-lockup{display:flex;align-items:center;gap:12px;}
+  .brand-logo{width:46px;height:46px;border-radius:14px;object-fit:cover;box-shadow:0 8px 18px rgba(74,47,68,0.14);border:2px solid rgba(255,255,255,0.65);background:var(--white);}
+  .nav-actions{display:flex;align-items:center;gap:10px;}
+  .btn-ghost{color:var(--plum);background:rgba(255,253,249,0.72);border:1px solid rgba(74,47,68,0.08);padding:11px 16px;border-radius:999px;font-weight:800;box-shadow:0 8px 18px rgba(74,47,68,0.06);}
+  .btn-ghost:hover{transform:translateY(-1px);}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+  .btn-soft{background:rgba(255,253,249,0.14);color:var(--white);border:1px solid rgba(255,253,249,0.35);backdrop-filter:blur(4px);}
+  .hero-trust{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:28px;max-width:560px;}
+  .trust-pill{background:rgba(255,253,249,0.12);border:1px solid rgba(255,253,249,0.2);border-radius:16px;padding:12px 14px;backdrop-filter:blur(4px);}
+  .trust-pill strong{display:block;font-size:1rem;color:var(--white);}
+  .trust-pill span{display:block;font-size:0.78rem;opacity:.86;margin-top:4px;}
+  .track-wrap{background:var(--cream-2);border-radius:24px;padding:34px 24px;box-shadow:var(--shadow);}
+  .track-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start;}
+  .track-panel{background:var(--white);border-radius:18px;padding:18px;border:1px solid rgba(74,47,68,0.06);}
+  .track-form{display:grid;gap:12px;}
+  .track-input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--cream-2);background:var(--cream);font:inherit;}
+  .track-result{display:none;margin-top:14px;background:var(--cream);border-radius:16px;padding:16px;border:1px solid rgba(74,47,68,0.06);}
+  .track-result.open{display:block;}
+  .track-status{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--plum);}
+  .status-dot{width:11px;height:11px;border-radius:50%;background:var(--sage);box-shadow:0 0 0 6px rgba(138,155,110,0.16);}
+  .timeline{margin-top:14px;display:grid;gap:10px;}
+  .timeline-step{display:flex;gap:10px;align-items:flex-start;font-weight:700;color:#5c4c46;}
+  .timeline-step .bullet{width:12px;height:12px;border-radius:50%;background:var(--cream-2);margin-top:5px;flex:0 0 auto;}
+  .timeline-step.active .bullet{background:var(--rose);}
+  .timeline-step.active{color:var(--plum);}
+  .track-note{font-size:0.84rem;color:#7b6a63;font-weight:600;line-height:1.6;margin-top:10px;}
+  .review-card .review-actions{display:flex;justify-content:flex-end;margin-top:10px;}
+  .review-delete{color:#a45560;font-weight:800;font-size:0.78rem;background:transparent;border:none;padding:0;}
+  .review-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;background:#eef4e4;color:#5f6f43;font-size:0.75rem;font-weight:800;}
+  .review-locked{margin-top:10px;color:#8a7a73;font-size:0.85rem;font-weight:700;}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+  .about-mini{background:var(--white);border-radius:18px;padding:18px;box-shadow:var(--shadow);border:1px solid rgba(74,47,68,0.06);text-align:left;}
+  .about-mini h3{font-size:1.05rem;margin-bottom:8px;}
+  .social-link{color:var(--rose-dark);font-weight:800;}
 
   /* FLOATING BUTTONS */
   .floating{
@@ -367,9 +401,16 @@
 
 <header>
   <div class="nav-inner">
-    <div>
-      <div class="logo">little_loopcrochet</div>
-      <div class="tagline-small">Handcrafted with Love</div>
+    <div class="brand-lockup">
+      <img class="brand-logo" src="https://i.ibb.co/4gJ4MW1y/little-loopcrochet-20260809-133306-105.jpg" alt="little_loopcrochet logo">
+      <div>
+        <div class="logo">little_loopcrochet</div>
+        <div class="tagline-small">Handcrafted with Love</div>
+      </div>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-ghost" href="#track">Track Order</a>
+      <a class="btn btn-ghost" href="#about">About</a>
     </div>
   </div>
 </header>
@@ -379,10 +420,17 @@
     <span class="hero-eyebrow">Made stitch by stitch, by hand</span>
     <h1>Little loops.<br>Big love.</h1>
     <p class="sub">Soft, one-of-a-kind crochet pieces made slowly, with care — for the people (and rooms) you adore.</p>
-    <a href="#products" class="btn btn-primary">Shop Now ↓</a>
+    <div class="hero-actions">
+      <a href="#products" class="btn btn-primary">Shop Now ↓</a>
+      <a href="#track" class="btn btn-primary btn-soft">Track Order</a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-pill"><strong>100% Handmade</strong><span>Custom-made with care</span></div>
+      <div class="trust-pill"><strong>Order Updates</strong><span>Track your product status</span></div>
+      <div class="trust-pill"><strong>Verified Reviews</strong><span>Only buyers can review</span></div>
+    </div>
   </div>
 </div>
-
 <div class="thread">
   <svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 25 0, 50 10 T 100 10 T 150 10 T 200 10 T 250 10 T 300 10 T 350 10 T 400 10" fill="none" stroke="#C97B84" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/></svg>
 </div>
@@ -401,17 +449,67 @@
   <svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 25 20, 50 10 T 100 10 T 150 10 T 200 10 T 250 10 T 300 10 T 350 10 T 400 10" fill="none" stroke="#8A9B6E" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/></svg>
 </div>
 
-<section>
+<section id="track">
+  <div class="section-head">
+    <div class="eyebrow">Order Tracking</div>
+    <h2>Know where your order is</h2>
+  </div>
+  <div class="track-wrap">
+    <div class="track-grid">
+      <div class="track-panel">
+        <h3 style="margin-bottom:8px;">Track by Order ID</h3>
+        <p style="margin:0;color:#5c4c46;font-weight:600;line-height:1.6;">Enter your order number and phone number to see the latest saved status on this device.</p>
+        <div class="track-form" style="margin-top:16px;">
+          <input class="track-input" id="trackOrderId" placeholder="Order ID">
+          <input class="track-input" id="trackPhone" placeholder="Phone number">
+          <button class="btn btn-primary" id="trackBtn" type="button">Track My Product</button>
+        </div>
+        <div class="track-result" id="trackResult"></div>
+        <p class="track-note">This website saves order tracking locally after checkout. For a live backend tracker, the next step would be connecting your store to a database or order management service.</p>
+      </div>
+      <div class="track-panel">
+        <h3 style="margin-bottom:8px;">Useful features</h3>
+        <div class="timeline">
+          <div class="timeline-step active"><span class="bullet"></span><div><strong>Buyer-only reviews</strong><br>Only customers with a saved purchase can leave feedback.</div></div>
+          <div class="timeline-step active"><span class="bullet"></span><div><strong>Review deletion</strong><br>The same shopper profile can delete its own review.</div></div>
+          <div class="timeline-step active"><span class="bullet"></span><div><strong>Order status</strong><br>Track saved orders from received to delivered.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="thread">
+  <svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 25 0, 50 10 T 100 10 T 150 10 T 200 10 T 250 10 T 300 10 T 350 10 T 400 10" fill="none" stroke="#8A9B6E" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/></svg>
+</div>
+
+<section id="about">
   <div class="about">
     <div class="eyebrow" style="color:var(--sage);font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:0.78rem;">Our Story</div>
     <h2 style="margin-top:10px;">Every piece starts as a single loop</h2>
     <p>little_loopcrochet is a tiny, one-woman studio turning skeins of yarn into cozy, huggable things. No factories, no rush — just a hook, good yarn, and a lot of patience. Order what you love, and we'll make it just for you.</p>
+
+    <div class="about-grid">
+      <div class="about-mini">
+        <h3>Brand</h3>
+        <p style="margin:0;color:#5c4c46;font-weight:600;line-height:1.6;">Instagram: <a class="social-link" href="https://instagram.com/little_loopcrochet" target="_blank" rel="noopener">@little_loopcrochet</a></p>
+      </div>
+      <div class="about-mini">
+        <h3>Team</h3>
+        <p style="margin:0;color:#5c4c46;font-weight:600;line-height:1.6;">Founder: <a class="social-link" href="https://instagram.com/hussainatifa" target="_blank" rel="noopener">@hussainatifa</a><br>Manager &amp; Creator: <a class="social-link" href="https://instagram.com/axr.md" target="_blank" rel="noopener">@axr.md</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="logo2">little_loopcrochet</div>
+  <div class="brand-lockup" style="justify-content:center;margin-bottom:12px;">
+    <img class="brand-logo" src="https://i.ibb.co/4gJ4MW1y/little-loopcrochet-20260809-133306-105.jpg" alt="little_loopcrochet logo">
+    <div class="logo2">little_loopcrochet</div>
+  </div>
   <p>Handcrafted with Love · <a class="email" href="mailto:littleloopcrochet01@gmail.com">littleloopcrochet01@gmail.com</a></p>
+  <p>Instagram · <a class="email" href="https://instagram.com/little_loopcrochet" target="_blank" rel="noopener">@little_loopcrochet</a></p>
+  <p>Founder · <a class="email" href="https://instagram.com/hussainatifa" target="_blank" rel="noopener">@hussainatifa</a> · Manager &amp; Creator · <a class="email" href="https://instagram.com/axr.md" target="_blank" rel="noopener">@axr.md</a></p>
   <p>© 2026 little_loopcrochet. All loops reserved.</p>
 </footer>
 
@@ -435,7 +533,7 @@
   <div class="cart-items" id="cartItems"></div>
   <div class="drawer-foot">
     <div class="total-row"><span>Total</span><span id="cartTotal">₹0</span></div>
-    <button class="btn btn-primary btn-full" id="checkoutBtn">Send Order</button>
+    <button class="btn btn-primary btn-full" id="checkoutBtn">Place Order</button>
   </div>
 </div>
 
@@ -538,14 +636,42 @@ const PRODUCTS = [
 
 /* ---------- STATE ---------- */
 let cart = {}; // id -> qty
-let reviews = {}; // id -> [ {name, rating, text, photo, date} ]
+let reviews = {}; // id -> [ {name, rating, text, photo, date, authorId, authorName} ]
+let orders = []; // saved local orders for tracking
+let purchaseLedger = {}; // id -> qty
+const LOCAL_USER_ID_KEY = 'llc_user_id';
+const LOCAL_USER_NAME_KEY = 'llc_user_name';
+const LOCAL_ORDERS_KEY = 'llc_orders';
+const LOCAL_PURCHASE_KEY = 'llc_purchases';
 try { reviews = JSON.parse(localStorage.getItem('llc_reviews') || '{}'); } catch(e){ reviews = {}; }
+try { orders = JSON.parse(localStorage.getItem(LOCAL_ORDERS_KEY) || '[]'); } catch(e){ orders = []; }
+try { purchaseLedger = JSON.parse(localStorage.getItem(LOCAL_PURCHASE_KEY) || '{}'); } catch(e){ purchaseLedger = {}; }
 let currentDetailId = null;
 let pickedStars = 0;
 let pickedPhoto = null;
 
 function saveReviews(){
   try { localStorage.setItem('llc_reviews', JSON.stringify(reviews)); } catch(e){}
+}
+function saveOrders(){
+  try { localStorage.setItem(LOCAL_ORDERS_KEY, JSON.stringify(orders)); } catch(e){}
+}
+function savePurchases(){
+  try { localStorage.setItem(LOCAL_PURCHASE_KEY, JSON.stringify(purchaseLedger)); } catch(e){}
+}
+function getCurrentUserId(){
+  let id = localStorage.getItem(LOCAL_USER_ID_KEY);
+  if (!id){
+    id = (crypto && crypto.randomUUID) ? crypto.randomUUID() : `user_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+    localStorage.setItem(LOCAL_USER_ID_KEY, id);
+  }
+  return id;
+}
+function getCurrentUserName(){
+  return localStorage.getItem(LOCAL_USER_NAME_KEY) || '';
+}
+function setCurrentUserName(name){
+  if (name) localStorage.setItem(LOCAL_USER_NAME_KEY, name);
 }
 function getReviews(id){ return reviews[id] || []; }
 function avgRating(id){
@@ -556,6 +682,31 @@ function avgRating(id){
 function starString(n){
   const full = Math.round(n);
   return "★★★★★".slice(0,full) + "☆☆☆☆☆".slice(0, 5-full);
+}
+function getProductById(id){
+  return PRODUCTS.find(p => p.id === id);
+}
+function hasPurchased(id){
+  return !!(purchaseLedger[id] > 0);
+}
+function canReviewProduct(id){
+  return hasPurchased(id);
+}
+function getOrderStatusLabel(status){
+  return {
+    received: 'Order received',
+    packed: 'Packed for dispatch',
+    shipped: 'Out for delivery',
+    delivered: 'Delivered'
+  }[status] || 'Order received';
+}
+function nextOrderStatus(current){
+  return {
+    received: 'packed',
+    packed: 'shipped',
+    shipped: 'delivered',
+    delivered: 'delivered'
+  }[current] || 'received';
 }
 
 /* ---------- RENDER PRODUCT CARDS ---------- */
@@ -573,6 +724,7 @@ PRODUCTS.forEach(p => {
         ${rCount ? `<span class="stars">${starString(rAvg)}</span><span>(${rCount})</span>` : `<span>No reviews yet</span>`}
       </div>
       <div class="price">${p.price}</div>
+      ${hasPurchased(p.id) ? '<div class="review-badge">Verified buyer can review</div>' : '<div class="review-locked">Buy this item to unlock reviews.</div>'}
       <div class="card-actions">
         <button class="view-btn" data-id="${p.id}">View</button>
         <button class="add-btn" data-id="${p.id}">Add to Cart</button>
@@ -601,8 +753,7 @@ carousel.addEventListener('click', e => {
   if (img){ openDetail(img.dataset.id); return; }
   if (title){ openDetail(title.dataset.id); return; }
 });
-
-/* ---------- PRODUCT DETAIL MODAL ---------- */
+  /* ---------- PRODUCT DETAIL MODAL ---------- */
 const detailOverlay = document.getElementById('detailOverlay');
 const detailModal = document.getElementById('detailModal');
 
@@ -660,7 +811,7 @@ function renderDetail(id){
           <span data-v="1">★</span><span data-v="2">★</span><span data-v="3">★</span><span data-v="4">★</span><span data-v="5">★</span>
         </div>
         <div class="field" style="margin-bottom:10px;">
-          <input type="text" id="reviewerName" placeholder="Your name">
+          <input type="text" id="reviewerName" placeholder="Your name" value="${escapeHtml(getCurrentUserName())}">
         </div>
         <div class="field" style="margin-bottom:0;">
           <textarea id="reviewText" placeholder="How was it? Share your experience..." style="min-height:60px;"></textarea>
@@ -675,11 +826,12 @@ function renderDetail(id){
           <button type="button" class="btn btn-primary" id="submitReview" style="flex:1;">Submit Review</button>
         </div>
         <div class="status-msg" id="reviewStatus"></div>
+        <div class="review-locked" id="reviewGateMsg"></div>
       </div>
 
       <div class="review-list" id="reviewList">
         ${list.length ? list.map(r => `
-          <div class="review-card">
+          <div class="review-card" data-review-id="${escapeHtml(r.reviewId || '')}">
             <div class="review-top">
               <span class="review-name">${escapeHtml(r.name)}</span>
               <span class="review-date">${r.date}</span>
@@ -687,6 +839,7 @@ function renderDetail(id){
             <div class="review-stars">${starString(r.rating)}</div>
             ${r.text ? `<div class="review-text">${escapeHtml(r.text)}</div>` : ``}
             ${r.photo ? `<div class="review-photo"><img src="${r.photo}" alt="Customer photo"></div>` : ``}
+            ${r.authorId === getCurrentUserId() ? `<div class="review-actions"><button type="button" class="review-delete" data-delete-review="${escapeHtml(r.reviewId || '')}">Delete review</button></div>` : ``}
           </div>
         `).join('') : `<div class="review-empty">No reviews yet for this product.</div>`}
       </div>
@@ -709,7 +862,18 @@ function renderDetail(id){
 
   const toggleBtn = document.getElementById('toggleReviewForm');
   const reviewFormEl = document.getElementById('reviewForm');
-  toggleBtn.addEventListener('click', () => reviewFormEl.classList.toggle('open'));
+  const reviewGateMsg = document.getElementById('reviewGateMsg');
+  const reviewLocked = !canReviewProduct(id);
+  reviewGateMsg.textContent = reviewLocked
+    ? 'Reviews are unlocked only after a saved purchase for this product.'
+    : 'Verified buyer access enabled for this product.';
+  reviewFormEl.classList.toggle('open', !reviewLocked);
+  toggleBtn.disabled = reviewLocked;
+  if (reviewLocked) toggleBtn.textContent = 'Buyer-only review';
+  toggleBtn.addEventListener('click', () => {
+    if (!canReviewProduct(id)) return;
+    reviewFormEl.classList.toggle('open');
+  });
   document.getElementById('cancelReview').addEventListener('click', () => reviewFormEl.classList.remove('open'));
 
   const starPicker = document.getElementById('starPicker');
@@ -737,25 +901,52 @@ function renderDetail(id){
   });
 
   document.getElementById('submitReview').addEventListener('click', () => {
-    const name = document.getElementById('reviewerName').value.trim() || "Anonymous";
+    const name = document.getElementById('reviewerName').value.trim() || getCurrentUserName() || "Verified buyer";
     const text = document.getElementById('reviewText').value.trim();
     const statusEl = document.getElementById('reviewStatus');
+    if (!canReviewProduct(id)){
+      statusEl.textContent = "Only verified buyers can review this product.";
+      statusEl.className = "status-msg error";
+      return;
+    }
     if (pickedStars === 0){
       statusEl.textContent = "Please select a star rating.";
       statusEl.className = "status-msg error";
       return;
     }
+    const reviewId = (crypto && crypto.randomUUID) ? crypto.randomUUID() : `rv_${Date.now()}_${Math.random().toString(16).slice(2)}`;
     const newReview = {
-      name, rating: pickedStars, text, photo: pickedPhoto,
+      reviewId,
+      name,
+      authorId: getCurrentUserId(),
+      authorName: name,
+      rating: pickedStars,
+      text,
+      photo: pickedPhoto,
       date: new Date().toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' })
     };
     if (!reviews[id]) reviews[id] = [];
     reviews[id].unshift(newReview);
     saveReviews();
+    setCurrentUserName(name);
     pickedStars = 0; pickedPhoto = null;
     renderDetail(id);
     refreshCardRating(id);
   });
+
+  detailModal.onclick = e => {
+    const del = e.target.closest('[data-delete-review]');
+    if (!del) return;
+    const reviewId = del.dataset.deleteReview;
+    const list = getReviews(id);
+    const idx = list.findIndex(r => r.reviewId === reviewId && r.authorId === getCurrentUserId());
+    if (idx === -1) return;
+    list.splice(idx, 1);
+    reviews[id] = list;
+    saveReviews();
+    renderDetail(id);
+    refreshCardRating(id);
+  };
 }
 
 function refreshCardRating(id){
@@ -773,7 +964,7 @@ function escapeHtml(str){
   d.textContent = str;
   return d.innerHTML;
 }
-  
+
 /* ---------- CART DRAWER ---------- */
 const drawer = document.getElementById('drawer');
 const overlay = document.getElementById('overlay');
@@ -823,6 +1014,81 @@ function renderCart(){
     `;
   }).join('');
   cartTotalEl.textContent = "₹" + total;
+}
+
+const trackBtn = document.getElementById('trackBtn');
+const trackResult = document.getElementById('trackResult');
+
+function saveOrderFromCart(customer){
+  const ids = Object.keys(cart).filter(id => cart[id] > 0);
+  const orderId = `LLC-${Date.now().toString().slice(-6)}`;
+  const items = ids.map(id => ({ id, qty: cart[id] }));
+  const total = ids.reduce((sum,id) => sum + (getProductById(id).price * cart[id]), 0);
+  const order = {
+    orderId,
+    customerName: customer.name,
+    phone: customer.phone,
+    address: customer.address,
+    items,
+    total,
+    status: 'received',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  orders.unshift(order);
+  saveOrders();
+  items.forEach(item => {
+    purchaseLedger[item.id] = (purchaseLedger[item.id] || 0) + item.qty;
+  });
+  savePurchases();
+  setCurrentUserName(customer.name);
+  return order;
+}
+
+function renderTrackingResult(order){
+  const statusOrder = ['received','packed','shipped','delivered'];
+  const activeIndex = statusOrder.indexOf(order.status);
+  const steps = [
+    { key:'received', title:'Order received' },
+    { key:'packed', title:'Packed for dispatch' },
+    { key:'shipped', title:'Out for delivery' },
+    { key:'delivered', title:'Delivered' }
+  ];
+  trackResult.innerHTML = `
+    <div class="track-status"><span class="status-dot"></span>${order.orderId} · ${getOrderStatusLabel(order.status)}</div>
+    <div class="track-note" style="margin-top:8px;">Customer: ${escapeHtml(order.customerName)} · Total: ₹${order.total}</div>
+    <div class="timeline">
+      ${steps.map((step, idx) => `
+        <div class="timeline-step ${idx <= activeIndex ? 'active' : ''}">
+          <span class="bullet"></span>
+          <div><strong>${step.title}</strong><br>${idx === 0 ? 'We have received the order.' : idx === 1 ? 'The order is being prepared.' : idx === 2 ? 'Your parcel is on the way.' : 'The order has arrived.'}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  trackResult.classList.add('open');
+}
+
+trackBtn.addEventListener('click', () => {
+  const orderId = document.getElementById('trackOrderId').value.trim();
+  const phone = document.getElementById('trackPhone').value.trim();
+  const order = orders.find(o => o.orderId.toLowerCase() === orderId.toLowerCase() && o.phone === phone);
+  if (!order){
+    trackResult.innerHTML = `<div class="track-status"><span class="status-dot" style="background:#c0555f;box-shadow:0 0 0 6px rgba(192,85,95,0.14);"></span>Order not found</div><div class="track-note">Check the order ID and phone number saved after checkout on this device.</div>`;
+    trackResult.classList.add('open');
+    return;
+  }
+  renderTrackingResult(order);
+});
+
+function advanceSavedOrders(){
+  let changed = false;
+  orders = orders.map(o => {
+    if (o.status === 'delivered') return o;
+    changed = true;
+    return { ...o, status: nextOrderStatus(o.status), updatedAt: new Date().toISOString() };
+  });
+  if (changed) saveOrders();
 }
 
 cartItemsEl.addEventListener('click', e => {
@@ -935,6 +1201,8 @@ function sendViaMailto(payload, itemsText, total){
 }
 
 renderCart();
+advanceSavedOrders();
+setInterval(advanceSavedOrders, 15000);
 </script>
 </body>
 </html>

@@ -196,7 +196,6 @@
   .track-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:start;}
   
   
-  .track-input{width:100%;padding:12px 14px;border-radius:12px;border:1.5px solid var(--cream-2);background:var(--cream);font:inherit;}
   .review-card .review-actions{display:flex;justify-content:flex-end;margin-top:10px;}
   .review-delete{color:#a45560;font-weight:800;font-size:0.78rem;background:transparent;border:none;padding:0;}
   .review-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;padding:6px 10px;border-radius:999px;background:#eef4e4;color:#5f6f43;font-size:0.75rem;font-weight:800;}
@@ -387,6 +386,7 @@
     .hero{min-height:80vh;}
     section{padding:48px 16px;}
   }
+
 /* ---------- PROFESSIONAL BRAND LAYER ---------- */
 .brand-lockup{display:flex;align-items:center;gap:10px}
 .brand-logo-img{width:44px;height:44px;object-fit:cover;border-radius:12px;border:2px solid var(--white);box-shadow:0 4px 12px rgba(74,47,68,.14)}
@@ -399,6 +399,11 @@
 .btn-ghost:hover{background:rgba(255,253,249,.2);transform:translateY(-2px)}
 .trust-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;color:rgba(255,253,249,.88);font-size:.78rem;font-weight:800}
 .section-sub{max-width:580px;margin:12px auto 0;color:#7a6860;font-weight:600;line-height:1.6}
+.filter-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:28px}
+.filter-chip{background:var(--white);color:var(--plum);border:1.5px solid var(--cream-2);padding:9px 18px;border-radius:999px;font-weight:800;font-size:0.85rem;transition:all .18s ease;box-shadow:0 3px 10px rgba(74,47,68,0.05)}
+.filter-chip:hover{border-color:var(--rose);color:var(--rose-dark)}
+.filter-chip.active{background:var(--plum);color:var(--white);border-color:var(--plum)}
+.card.hidden{display:none}
 .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .feature-card,.step,.team-card{background:var(--white);border-radius:18px;padding:24px;box-shadow:var(--shadow);border:1px solid rgba(74,47,68,.06)}
 .feature-icon{font-size:2rem;margin-bottom:12px}
@@ -502,8 +507,14 @@
         <div class="tagline-small">Handcrafted with Love</div>
       </div>
     </div>
+    <nav class="main-nav">
+      <a href="#products">Shop</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
     <div class="nav-actions">
-      <a class="btn btn-ghost" href="#about">About</a>
+      <a class="btn btn-ghost" href="#contact">Get in Touch</a>
     </div>
   </div>
 </header>
@@ -514,7 +525,6 @@
     <h1>Little loops.<br>Big love.</h1>
     <p class="sub">Soft, one-of-a-kind crochet pieces made slowly, with care — for the people (and rooms) you adore.</p>
     <div class="hero-actions">
-      <div class="hero-actions">
       <a href="#products" class="btn btn-primary">Shop Handmade Pieces ↓</a>
       <a href="https://instagram.com/little_loopcrochet" target="_blank" rel="noopener" class="btn btn-ghost">Follow on Instagram</a>
     </div>
@@ -523,10 +533,11 @@
       <span>✦ Custom-friendly</span>
       <span>✦ Personal support</span>
     </div>
-    </div>
     <div class="hero-trust">
-      <div class="trust-pill"><strong>100% Handmade</strong><span>Custom-made with care</span></div>
-</div>
+      <div class="trust-pill"><strong>18+ Designs</strong><span>Keychains, bows &amp; bouquets</span></div>
+      <div class="trust-pill"><strong>100% Handmade</strong><span>Crafted stitch by stitch</span></div>
+      <div class="trust-pill"><strong>Made to Order</strong><span>Custom colours welcome</span></div>
+    </div>
   </div>
 </div>
 
@@ -541,6 +552,28 @@
 
 <div class="thread">
   <svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 25 0, 50 10 T 100 10 T 150 10 T 200 10 T 250 10 T 300 10 T 350 10 T 400 10" fill="none" stroke="#C97B84" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/></svg>
+</div>
+
+<section id="products">
+  <div class="section-head">
+    <div class="eyebrow">Shop the Collection</div>
+    <h2>Our Handmade Pieces</h2>
+    <p class="section-sub">Keychains, hair accessories, bows and everlasting crochet bouquets — every piece made stitch by stitch, to order.</p>
+  </div>
+  <div class="filter-row" id="filterRow">
+    <button class="filter-chip active" data-filter="all">All Pieces</button>
+    <button class="filter-chip" data-filter="keychains">Keychains</button>
+    <button class="filter-chip" data-filter="hair">Hair Accessories</button>
+    <button class="filter-chip" data-filter="bows">Bows</button>
+    <button class="filter-chip" data-filter="bouquets">Bouquets &amp; Flowers</button>
+  </div>
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel"></div>
+  </div>
+</section>
+
+<div class="thread">
+  <svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M0 10 Q 25 0, 50 10 T 100 10 T 150 10 T 200 10 T 250 10 T 300 10 T 350 10 T 400 10" fill="none" stroke="#D9A441" stroke-width="2" stroke-dasharray="1 9" stroke-linecap="round"/></svg>
 </div>
 
 <section id="why-us">
@@ -592,7 +625,7 @@
       </div>
       <div class="about-mini">
         <h3>Team</h3>
-        <p style="margin:0;color:#5c4c46;font-weight:600;line-height:1.6;">Founder: <a class="social-link" href="https://instagram.com/hussainatifa" target="_blank" rel="noopener">@hussainatifa</a><br>Manager &amp; Creator: <a class="social-link" href="https://instagram.com/axr.md" target="_blank" rel="noopener">@axr.md</a></p>
+        <p style="margin:0;color:#5c4c46;font-weight:600;line-height:1.6;">Founder: <a class="social-link" href="https://www.instagram.com/hussainatifa?igsh=aXo4b2sya3V5YzR1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@hussainatifa</a><br>Manager &amp; Creator: <a class="social-link" href="https://www.instagram.com/axr.md?igsh=dzVwdnk2NzIzcnFt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@axr.md</a></p>
       </div>
     </div>
   </div>
@@ -675,7 +708,7 @@
   <p>Handcrafted with Love · Custom crochet · Personal customer support</p>
   <p><a class="email" href="mailto:littleloopcrochet01@gmail.com">littleloopcrochet01@gmail.com</a> · <a class="email" href="tel:+917002284440">+91 70022 84440</a></p>
   <p>Instagram · <a class="email" href="https://instagram.com/little_loopcrochet" target="_blank" rel="noopener">@little_loopcrochet</a></p>
-  <p>Founder · <a class="email" href="https://instagram.com/hussainatifa" target="_blank" rel="noopener">@hussainatifa</a> · Manager &amp; Creator · <a class="email" href="https://instagram.com/axr.md" target="_blank" rel="noopener">@axr.md</a></p>
+  <p>Founder · <a class="email" href="https://www.instagram.com/hussainatifa?igsh=aXo4b2sya3V5YzR1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@hussainatifa</a> · Manager &amp; Creator · <a class="email" href="https://www.instagram.com/axr.md?igsh=dzVwdnk2NzIzcnFt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@axr.md</a></p>
   <p>© 2026 little_loopcrochet. All loops reserved.</p>
 </footer>
 
@@ -736,7 +769,6 @@
 </div>
 
 <script>
-<script>
 /* ---------- CONFIG ---------- */
 // Create a free form at https://formspree.io that delivers to littleloopcrochet01@gmail.com
 // and paste the resulting endpoint below. Until then, orders fall back to opening
@@ -746,58 +778,58 @@ const SHOP_EMAIL = "littleloopcrochet01@gmail.com";
 const ORDER_WHATSAPP = "917002284440";
 
 const PRODUCTS = [
-  { id: "p1",  name: "Peach Bow & Pearl Keychain", price: 50,
+  { id: "p1",  name: "Peach Bow & Pearl Keychain", price: 50, cat: "keychains",
     img: "https://i.ibb.co/ZppsB39k/little-loopcrochet-20260809-0002.jpg",
     desc: "A dainty crochet bow finished with a pearl accent, hand-stitched onto a sturdy keyring. Soft peach yarn, ready to clip onto keys or a bag." },
-  { id: "p2",  name: "Cozy Sunflower Keychain", price: 60,
+  { id: "p2",  name: "Cozy Sunflower Keychain", price: 60, cat: "keychains",
     img: "https://i.ibb.co/C3qjXWtC/little-loopcrochet-20260809-0001.jpg",
     desc: "A cheerful little sunflower crocheted in warm yellow and brown, mounted on a keyring. A pop of sunshine for your keys or bag." },
-  { id: "p3",  name: "Cozy Rose Keychain", price: 50,
+  { id: "p3",  name: "Cozy Rose Keychain", price: 50, cat: "keychains",
     img: "https://i.ibb.co/HLDdwLc2/little-loopcrochet-20260809-0004.jpg",
     desc: "A tiny hand-crocheted rose in soft rounds of yarn, finished as a keychain charm. A sweet, everyday accessory." },
-  { id: "p4",  name: "Sweet Cherry Keychain", price: 50,
+  { id: "p4",  name: "Sweet Cherry Keychain", price: 50, cat: "keychains",
     img: "https://i.ibb.co/vCyjgQRn/little-loopcrochet-20260809-0003.jpg",
     desc: "A playful pair of crochet cherries in deep red with a stitched green stem, made into a keychain charm." },
-  { id: "p5",  name: "Blue Floral Hair Clips (Pair)", price: 50,
+  { id: "p5",  name: "Blue Floral Hair Clips (Pair)", price: 50, cat: "hair",
     img: "https://i.ibb.co/7dBv8b2s/little-loopcrochet-20260809-0007.jpg",
     desc: "A pair of small crochet flower hair clips in soft blue, hand-stitched onto snap clips. Sold as a set of two." },
-  { id: "p6",  name: "Yellow Pearl Blossom Hair Clips (Pair)", price: 40,
+  { id: "p6",  name: "Yellow Pearl Blossom Hair Clips (Pair)", price: 40, cat: "hair",
     img: "https://i.ibb.co/nqwwc0kZ/little-loopcrochet-20260809-0006.jpg",
     desc: "Delicate yellow crochet blossoms with a pearl centre, set on a pair of hair clips." },
-  { id: "p7",  name: "Baby Blue Bow & Pearl Keychain", price: 50,
+  { id: "p7",  name: "Baby Blue Bow & Pearl Keychain", price: 50, cat: "keychains",
     img: "https://i.ibb.co/nqYWLQpp/little-loopcrochet-20260809-0005.jpg",
     desc: "A soft baby-blue crochet bow with a pearl detail, finished as a keychain charm." },
-  { id: "p8",  name: "Red Rose Hair Scrunchie / Elastic", price: 50,
+  { id: "p8",  name: "Red Rose Hair Scrunchie / Elastic", price: 50, cat: "hair",
     img: "https://i.ibb.co/DH9WcVkM/little-loopcrochet-20260809-0009.jpg",
     desc: "A hair elastic topped with a hand-crocheted red rose — pretty enough for everyday wear or a special occasion." },
-  { id: "p9",  name: "Pink Pearl Blossom Hair Clips", price: 50,
+  { id: "p9",  name: "Pink Pearl Blossom Hair Clips", price: 50, cat: "hair",
     img: "https://i.ibb.co/GfPsTkRp/little-loopcrochet-20260809-0008.jpg",
     desc: "Soft pink crochet blossoms with a pearl centre, mounted on hair clips for an everyday sweet touch." },
-  { id: "p10", name: "Single Sunflower Bouquet", price: 149,
+  { id: "p10", name: "Single Sunflower Bouquet", price: 149, cat: "bouquets",
     img: "https://i.ibb.co/kn797xd/little-loopcrochet-20260809-0012.jpg",
     desc: "A single hand-crocheted sunflower on a wrapped stem — a keepsake bloom that never wilts." },
-  { id: "p11", name: "Mini Red Rose Bouquet", price: 299,
+  { id: "p11", name: "Mini Red Rose Bouquet", price: 299, cat: "bouquets",
     img: "https://i.ibb.co/Bd0CC4f/little-loopcrochet-20260809-0011.jpg",
     desc: "A small bouquet of hand-crocheted red roses on wrapped stems, gathered together — a lasting gift for someone you love." },
-  { id: "p12", name: "Single Yellow Lily Stick Bouquet", price: 149,
+  { id: "p12", name: "Single Yellow Lily Stick Bouquet", price: 149, cat: "bouquets",
     img: "https://i.ibb.co/6C1LqH6/little-loopcrochet-20260809-0014.jpg",
     desc: "A single crochet lily in sunny yellow on a wrapped stem, perfect on its own or added to a bigger bunch." },
-  { id: "p13", name: "Single Blue Lily Stick Bouquet", price: 149,
+  { id: "p13", name: "Single Blue Lily Stick Bouquet", price: 149, cat: "bouquets",
     img: "https://i.ibb.co/QvZG2jtt/little-loopcrochet-20260809-0013.jpg",
     desc: "A single crochet lily in soft blue on a wrapped stem, perfect on its own or added to a bigger bunch." },
-  { id: "p14", name: "Pearl Crochet Bow", price: 120,
+  { id: "p14", name: "Pearl Crochet Bow", price: 120, cat: "bows",
     img: "https://i.ibb.co/6cSPfx1t/little-loopcrochet-20260809-0016.jpg",
     desc: "A statement crochet bow finished with pearl detailing — a versatile accessory for hair, bags, or gifting." },
-  { id: "p15", name: "Ribbon Crochet Bow", price: 100,
+  { id: "p15", name: "Ribbon Crochet Bow", price: 100, cat: "bows",
     img: "https://i.ibb.co/Z1gptChS/little-loopcrochet-20260809-0017.jpg",
     desc: "A ribbon-style crochet bow, neatly finished for use as a hair accessory or decorative accent." },
-  { id: "p16", name: "Crochet Paranda", price: 100,
+  { id: "p16", name: "Crochet Paranda", price: 100, cat: "hair",
     img: "https://i.ibb.co/Dd32GXc/little-loopcrochet-20260809-0018.jpg",
     desc: "A traditional-style crochet paranda for braids, hand-made with care and a soft finish." },
-  { id: "p17", name: "Sunflower Sticks (₹250 per stick)", price: 250,
+  { id: "p17", name: "Sunflower Sticks (₹250 per stick)", price: 250, cat: "bouquets",
     img: "https://i.ibb.co/Nd3S3nyR/little-loopcrochet-20260809-0019.jpg",
     desc: "Hand-crocheted sunflower stems, priced per stick — add as many as you like to build your own bouquet." },
-  { id: "p18", name: "Sunflower Bouquet (₹250 per stick)", price: 250,
+  { id: "p18", name: "Sunflower Bouquet (₹250 per stick)", price: 250, cat: "bouquets",
     img: "https://i.ibb.co/5hXQs22N/little-loopcrochet-20260809-0020.jpg",
     desc: "A gathered bouquet of hand-crocheted sunflowers, priced per stick — a lasting, sunny gift." }
 ];
@@ -805,27 +837,15 @@ const PRODUCTS = [
 /* ---------- STATE ---------- */
 let cart = {}; // id -> qty
 let reviews = {}; // id -> [ {name, rating, text, photo, date, authorId, authorName} ]
-let orders = []; // saved local orders for tracking
-let purchaseLedger = {}; // id -> qty
 const LOCAL_USER_ID_KEY = 'llc_user_id';
 const LOCAL_USER_NAME_KEY = 'llc_user_name';
-const LOCAL_ORDERS_KEY = 'llc_orders';
-const LOCAL_PURCHASE_KEY = 'llc_purchases';
 try { reviews = JSON.parse(localStorage.getItem('llc_reviews') || '{}'); } catch(e){ reviews = {}; }
-try { orders = JSON.parse(localStorage.getItem(LOCAL_ORDERS_KEY) || '[]'); } catch(e){ orders = []; }
-try { purchaseLedger = JSON.parse(localStorage.getItem(LOCAL_PURCHASE_KEY) || '{}'); } catch(e){ purchaseLedger = {}; }
 let currentDetailId = null;
 let pickedStars = 0;
 let pickedPhoto = null;
 
 function saveReviews(){
   try { localStorage.setItem('llc_reviews', JSON.stringify(reviews)); } catch(e){}
-}
-function saveOrders(){
-  try { localStorage.setItem(LOCAL_ORDERS_KEY, JSON.stringify(orders)); } catch(e){}
-}
-function savePurchases(){
-  try { localStorage.setItem(LOCAL_PURCHASE_KEY, JSON.stringify(purchaseLedger)); } catch(e){}
 }
 function getCurrentUserId(){
   let id = localStorage.getItem(LOCAL_USER_ID_KEY);
@@ -854,29 +874,6 @@ function starString(n){
 function getProductById(id){
   return PRODUCTS.find(p => p.id === id);
 }
-function hasPurchased(id){
-  return !!(purchaseLedger[id] > 0);
-}
-function canReviewProduct(id){
-  return hasPurchased(id);
-}
-function getOrderStatusLabel(status){
-  return {
-    received: 'Order received',
-    packed: 'Packed for dispatch',
-    shipped: 'Out for delivery',
-    delivered: 'Delivered'
-  }[status] || 'Order received';
-}
-function nextOrderStatus(current){
-  return {
-    received: 'packed',
-    packed: 'shipped',
-    shipped: 'delivered',
-    delivered: 'delivered'
-  }[current] || 'received';
-}
-
 /* ---------- RENDER PRODUCT CARDS ---------- */
 const carousel = document.getElementById('carousel');
 PRODUCTS.forEach(p => {
@@ -892,14 +889,26 @@ PRODUCTS.forEach(p => {
         ${rCount ? `<span class="stars">${starString(rAvg)}</span><span>(${rCount})</span>` : `<span>No reviews yet</span>`}
       </div>
       <div class="price">${p.price}</div>
-      ${hasPurchased(p.id) ? '<div class="review-badge">Verified buyer can review</div>' : '<div class="review-locked">Buy this item to unlock reviews.</div>'}
       <div class="card-actions">
         <button class="view-btn" data-id="${p.id}">View</button>
         <button class="add-btn" data-id="${p.id}">Add to Cart</button>
       </div>
     </div>
   `;
+  card.dataset.cat = p.cat;
   carousel.appendChild(card);
+});
+
+const filterRow = document.getElementById('filterRow');
+filterRow.addEventListener('click', e => {
+  const chip = e.target.closest('.filter-chip');
+  if (!chip) return;
+  [...filterRow.children].forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  const filter = chip.dataset.filter;
+  [...carousel.children].forEach(card => {
+    card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
+  });
 });
 
 carousel.addEventListener('click', e => {
@@ -914,7 +923,14 @@ carousel.addEventListener('click', e => {
     addBtn.textContent = "Added ✓";
     addBtn.classList.add('added');
     setTimeout(() => { addBtn.textContent = "Add to Cart"; addBtn.classList.remove('added'); }, 900);
-    
+    renderCart();
+    return;
+  }
+  if (viewBtn){ openDetail(viewBtn.dataset.id); return; }
+  if (img){ openDetail(img.dataset.id); return; }
+  if (title){ openDetail(title.dataset.id); return; }
+});
+
 function sendOrderViaWhatsApp(payload, itemsText, total){
   const message = encodeURIComponent(
     `New order from ${payload.customer_name} — little_loopcrochet\n\n` +
@@ -925,14 +941,6 @@ function sendOrderViaWhatsApp(payload, itemsText, total){
   );
   window.open(`https://wa.me/${ORDER_WHATSAPP}?text=${message}`, "_blank", "noopener");
 }
-
-renderCart();
-    return;
-  }
-  if (viewBtn){ openDetail(viewBtn.dataset.id); return; }
-  if (img){ openDetail(img.dataset.id); return; }
-  if (title){ openDetail(title.dataset.id); return; }
-});
 
 /* ---------- PRODUCT DETAIL MODAL ---------- */
 const detailOverlay = document.getElementById('detailOverlay');
@@ -1007,7 +1015,6 @@ function renderDetail(id){
           <button type="button" class="btn btn-primary" id="submitReview" style="flex:1;">Submit Review</button>
         </div>
         <div class="status-msg" id="reviewStatus"></div>
-        <div class="review-locked" id="reviewGateMsg"></div>
       </div>
 
       <div class="review-list" id="reviewList">
@@ -1026,6 +1033,7 @@ function renderDetail(id){
       </div>
     </div>
   `;
+
   document.getElementById('detailCloseBtn').addEventListener('click', closeDetail);
 
   let qty = 1;
@@ -1042,16 +1050,7 @@ function renderDetail(id){
 
   const toggleBtn = document.getElementById('toggleReviewForm');
   const reviewFormEl = document.getElementById('reviewForm');
-  const reviewGateMsg = document.getElementById('reviewGateMsg');
-  const reviewLocked = !canReviewProduct(id);
-  reviewGateMsg.textContent = reviewLocked
-    ? 'Reviews are unlocked only after a saved purchase for this product.'
-    : 'Verified buyer access enabled for this product.';
-  reviewFormEl.classList.toggle('open', !reviewLocked);
-  toggleBtn.disabled = reviewLocked;
-  if (reviewLocked) toggleBtn.textContent = 'Buyer-only review';
   toggleBtn.addEventListener('click', () => {
-    if (!canReviewProduct(id)) return;
     reviewFormEl.classList.toggle('open');
   });
   document.getElementById('cancelReview').addEventListener('click', () => reviewFormEl.classList.remove('open'));
@@ -1081,14 +1080,9 @@ function renderDetail(id){
   });
 
   document.getElementById('submitReview').addEventListener('click', () => {
-    const name = document.getElementById('reviewerName').value.trim() || getCurrentUserName() || "Verified buyer";
+    const name = document.getElementById('reviewerName').value.trim() || getCurrentUserName() || "Guest";
     const text = document.getElementById('reviewText').value.trim();
     const statusEl = document.getElementById('reviewStatus');
-    if (!canReviewProduct(id)){
-      statusEl.textContent = "Only verified buyers can review this product.";
-      statusEl.className = "status-msg error";
-      return;
-    }
     if (pickedStars === 0){
       statusEl.textContent = "Please select a star rating.";
       statusEl.className = "status-msg error";
@@ -1196,77 +1190,6 @@ function renderCart(){
   cartTotalEl.textContent = "₹" + total;
 }
 
-const trackBtn = document.getElementById('trackBtn');
-const trackResult = document.getElementById('trackResult');
-
-function saveOrderFromCart(customer){
-  const ids = Object.keys(cart).filter(id => cart[id] > 0);
-  const orderId = `LLC-${Date.now().toString().slice(-6)}`;
-  const items = ids.map(id => ({ id, qty: cart[id] }));
-  const total = ids.reduce((sum,id) => sum + (getProductById(id).price * cart[id]), 0);
-  const order = {
-    orderId,
-    customerName: customer.name,
-    phone: customer.phone,
-    address: customer.address,
-    items,
-    total,
-    status: 'received',
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString()
-  };
-  orders.unshift(order);
-  saveOrders();
-  items.forEach(item => {
-    purchaseLedger[item.id] = (purchaseLedger[item.id] || 0) + item.qty;
-  });
-  savePurchases();
-  setCurrentUserName(customer.name);
-  return order;
-}
-
-function renderTrackingResult(order){
-  const statusOrder = ['received','packed','shipped','delivered'];
-  const activeIndex = statusOrder.indexOf(order.status);
-  const steps = [
-    { key:'received', title:'Order received' },
-    { key:'packed', title:'Packed for dispatch' },
-    { key:'shipped', title:'Out for delivery' },
-    { key:'delivered', title:'Delivered' }
-  ];
-  trackResult.innerHTML = `
-    <div class="track-status"><span class="status-dot"></span>${order.orderId} · ${getOrderStatusLabel(order.status)}</div>
-    <div class="track-note" style="margin-top:8px;">Customer: ${escapeHtml(order.customerName)} · Total: ₹${order.total}</div>
-    <div class="timeline">
-      ${steps.map((step, idx) => `
-        <div class="timeline-step ${idx <= activeIndex ? 'active' : ''}">
-          <span class="bullet"></span>
-          <div><strong>${step.title}</strong><br>${idx === 0 ? 'We have received the order.' : idx === 1 ? 'The order is being prepared.' : idx === 2 ? 'Your parcel is on the way.' : 'The order has arrived.'}</div>
-        </div>
-      `).join('')}
-    </div>
-  `;
-  trackResult.classList.add('open');
-}
-
-trackBtn.addEventListener('click', () => {
-  const orderId = document.getElementById('trackOrderId').value.trim();
-  const phone = document.getElementById('trackPhone').value.trim();
-  const order = orders.find(o => o.orderId.toLowerCase() === orderId.toLowerCase() && o.phone === phone);
-  
-  renderTrackingResult(order);
-});
-
-function advanceSavedOrders(){
-  let changed = false;
-  orders = orders.map(o => {
-    if (o.status === 'delivered') return o;
-    changed = true;
-    return { ...o, status: nextOrderStatus(o.status), updatedAt: new Date().toISOString() };
-  });
-  if (changed) saveOrders();
-}
-
 cartItemsEl.addEventListener('click', e => {
   const id = e.target.dataset.id;
   if (!id) return;
@@ -1341,10 +1264,9 @@ orderForm.addEventListener('submit', async (e) => {
         body: JSON.stringify(payload)
       });
       if (res.ok){
-        
         // Also open WhatsApp with the same order details for the shop.
         sendOrderViaWhatsApp(payload, itemsText, total);
-orderStatus.textContent = "Order sent! We'll be in touch on WhatsApp/phone shortly. 🧶";
+        orderStatus.textContent = "Order sent! We'll be in touch on WhatsApp/phone shortly. 🧶";
         orderStatus.classList.add('success');
         cart = {};
         renderCart();
@@ -1361,6 +1283,9 @@ orderStatus.textContent = "Order sent! We'll be in touch on WhatsApp/phone short
     sendViaMailto(payload, itemsText, total);
     orderStatus.textContent = "Opening your email app to send this order…";
     orderStatus.classList.add('success');
+    cart = {};
+    renderCart();
+    setTimeout(() => { closeModal(); closeDrawerFn(); orderForm.reset(); }, 1800);
   }
 
   submitBtn.disabled = false;
@@ -1380,8 +1305,6 @@ function sendViaMailto(payload, itemsText, total){
 }
 
 renderCart();
-advanceSavedOrders();
-setInterval(advanceSavedOrders, 15000);
 </script>
 </body>
 </html>

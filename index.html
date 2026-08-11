@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>little_loopcrochet — Handcrafted with Love</title>
+<meta name="description" content="Handmade crochet keychains, hair accessories, bows and everlasting bouquets — made stitch by stitch to order by little_loopcrochet.">
+<meta name="theme-color" content="#4A2F44">
+<link rel="icon" type="image/jpeg" href="https://i.ibb.co/4gJ4MW1y/little-loopcrochet-20260809-133306-105.jpg">
+<meta property="og:title" content="little_loopcrochet — Handcrafted with Love">
+<meta property="og:description" content="Handmade crochet keychains, hair accessories, bows and everlasting bouquets — made stitch by stitch to order.">
+<meta property="og:image" content="https://i.ibb.co/qYfgDYMb/pexels-tim-douglas-6567204.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -142,9 +150,25 @@
     display:flex;flex-direction:column;
   }
   @media(min-width:640px){ .card{flex:0 0 300px;} }
-  .card-img{ aspect-ratio:1/1; overflow:hidden; background:var(--cream-2); cursor:pointer; }
+  .card-img{ aspect-ratio:1/1; overflow:hidden; background:var(--cream-2); cursor:pointer; position:relative; }
   .card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease;}
   .card:hover .card-img img{transform:scale(1.06);}
+  .wishlist-btn{
+    position:absolute;top:10px;right:10px;z-index:2;
+    width:32px;height:32px;border-radius:50%;
+    background:rgba(255,253,249,0.92);
+    display:flex;align-items:center;justify-content:center;
+    color:#c9a8ae;box-shadow:0 3px 10px rgba(0,0,0,0.14);
+    transition:transform .15s ease;
+  }
+  .wishlist-btn:hover{transform:scale(1.1);}
+  .wishlist-btn.active{color:#e0505f;}
+  .wishlist-btn.active svg{fill:currentColor;}
+  .card-tag{
+    align-self:flex-start;
+    font-size:0.7rem;font-weight:800;color:var(--rose-dark);
+    background:#fbeef0;padding:3px 10px;border-radius:999px;
+  }
   .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;gap:8px;flex:1;}
   .card-body h3{font-size:1.15rem;cursor:pointer;}
   .card-body h3:hover{color:var(--rose-dark);}
@@ -156,19 +180,23 @@
   .price::before{content:"₹";font-size:0.9em;margin-right:2px;}
   .card-actions{display:flex;gap:8px;margin-top:auto;}
   .view-btn{
-    background:var(--cream-2); color:var(--plum);
-    padding:11px 14px;border-radius:12px;font-weight:700;font-size:0.85rem;
+    background:var(--white); color:var(--plum);
+    border:1.5px solid var(--cream-2);
+    padding:11px 14px;border-radius:10px;font-weight:700;font-size:0.85rem;
   }
   .add-btn{
     flex:1;
-    background:var(--plum); color:var(--white);
-    padding:11px 16px; border-radius:12px;
-    font-weight:700;font-size:0.9rem;
+    background:var(--white); color:var(--plum);
+    border:1.5px solid var(--plum);
+    padding:11px 16px; border-radius:10px;
+    font-weight:800;font-size:0.9rem;
     display:flex;align-items:center;justify-content:center;gap:8px;
-    transition:background .2s ease;
+    transition:all .2s ease;
   }
-  .add-btn:hover{background:var(--rose-dark);}
-  .add-btn.added{background:var(--sage);}
+  .add-btn:hover{background:var(--plum);color:var(--white);}
+  .add-btn.added{background:var(--sage);color:var(--white);border-color:var(--sage);}
+  .add-btn.in-cart{border-color:var(--rose-dark);color:var(--rose-dark);}
+  .add-btn.in-cart:hover{background:var(--rose-dark);color:var(--white);}
 
   /* ABOUT strip */
   .about{ background:var(--cream-2); border-radius:24px; padding:44px 30px; text-align:center; }
@@ -223,6 +251,16 @@
   }
   .fab-wa{ bottom:24px; background:#25D366; color:var(--white); }
   .fab-wa svg,.fab-cart svg{width:26px;height:26px;}
+  .fab-wish{ bottom:168px; background:var(--white); color:#e0505f; border:1.5px solid var(--cream-2); }
+  .fab-wish svg{width:24px;height:24px;}
+  .fab-top{
+    bottom:240px; background:var(--white); color:var(--plum);
+    width:46px;height:46px;border:1.5px solid var(--cream-2);
+    opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .2s ease, transform .2s ease;
+  }
+  .fab-top.visible{opacity:1;pointer-events:auto;transform:translateY(0);}
+  .fab-top svg{width:20px;height:20px;}
 
   /* Generic overlay used by cart / detail / order modal */
   .overlay{
@@ -309,6 +347,13 @@
   .status-msg{ margin-top:12px;font-size:0.88rem;font-weight:700;text-align:center; }
   .status-msg.success{color:var(--sage);}
   .status-msg.error{color:#c0555f;}
+  .order-method-actions{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+  .btn-whatsapp{background:#25D366;color:var(--white);justify-content:center;box-shadow:0 8px 20px rgba(37,211,102,0.35);}
+  .btn-whatsapp:hover{background:#1fb958;transform:translateY(-2px);}
+  .btn-whatsapp svg{flex-shrink:0;}
+  #orderViaEmail{justify-content:center;}
+  .btn-cancel-link{background:none;color:#9a8a83;font-weight:700;font-size:0.85rem;text-align:center;padding:6px;text-decoration:underline;}
+  .btn-cancel-link:hover{color:#6d5c55;}
 
   /* PRODUCT DETAIL MODAL */
   .detail-overlay{
@@ -331,6 +376,13 @@
     display:flex;align-items:center;justify-content:center;
     font-weight:800;color:var(--plum);box-shadow:0 4px 10px rgba(0,0,0,0.15);
   }
+  .detail-share{
+    position:absolute;top:14px;right:58px;z-index:5;
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,253,249,0.9);
+    display:flex;align-items:center;justify-content:center;
+    color:var(--plum);box-shadow:0 4px 10px rgba(0,0,0,0.15);
+  }
   .detail-img{ width:100%; aspect-ratio:1/1; background:var(--cream-2); overflow:hidden; }
   .detail-img img{width:100%;height:100%;object-fit:cover;}
   .detail-body{padding:22px 22px 6px;}
@@ -345,6 +397,19 @@
   .detail-qty span.lbl{font-weight:800;color:var(--plum);font-size:0.85rem;}
   .qty-controls.lg button{width:32px;height:32px;font-size:1.1rem;}
   .detail-actions{display:flex;gap:10px;margin-top:20px;}
+  .btn-ask-wa{width:52px;height:52px;flex-shrink:0;border-radius:14px;background:#25D366;color:var(--white);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(37,211,102,0.35);transition:transform .18s ease;}
+  .btn-ask-wa:hover{transform:translateY(-2px);}
+  .detail-quick-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:16px;padding:16px 6px;background:var(--cream);border-radius:14px;}
+  .dqa-item{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;color:var(--plum);font-size:0.72rem;font-weight:800;line-height:1.3;padding:4px;border-radius:10px;transition:background .15s ease;}
+  .dqa-item:hover{background:rgba(74,47,68,0.06);}
+  .dqa-icon{font-size:1.35rem;}
+  .mini-rail{padding:26px 22px 6px;border-top:1px solid var(--cream-2);}
+  .mini-rail-title{font-size:1.1rem;margin-bottom:14px;}
+  .mini-carousel{padding:2px 2px 14px;gap:14px;}
+  .mini-card{flex:0 0 150px;max-width:150px;scroll-snap-align:start;cursor:pointer;}
+  .mini-card .card-body{padding:10px 4px 4px;gap:4px;}
+  .mini-card h3{font-size:0.82rem;line-height:1.3;font-weight:800;}
+  .mini-card .price{font-size:0.88rem;}
 
   .reviews-section{ padding:26px 22px 30px; border-top:1px solid var(--cream-2); margin-top:22px; }
   .reviews-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
@@ -404,6 +469,31 @@
 .filter-chip:hover{border-color:var(--rose);color:var(--rose-dark)}
 .filter-chip.active{background:var(--plum);color:var(--white);border-color:var(--plum)}
 .card.hidden{display:none}
+.shop-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:18px;flex-wrap:wrap;}
+.search-box{flex:1;min-width:200px;display:flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--cream-2);border-radius:999px;padding:11px 16px;box-shadow:0 3px 10px rgba(74,47,68,0.05);}
+.search-box svg{color:#9a8a83;flex-shrink:0;}
+.search-box input{border:none;background:none;outline:none;font:inherit;font-size:0.92rem;color:var(--ink);width:100%;}
+.search-box input::placeholder{color:#b3a49c;}
+.view-toggle{display:flex;gap:6px;background:var(--white);border:1.5px solid var(--cream-2);border-radius:999px;padding:5px;box-shadow:0 3px 10px rgba(74,47,68,0.05);flex-shrink:0;}
+.view-btn-toggle{width:36px;height:36px;border-radius:999px;display:flex;align-items:center;justify-content:center;color:#9a8a83;transition:all .18s ease;}
+.view-btn-toggle:hover{color:var(--rose-dark);}
+.view-btn-toggle.active{background:var(--plum);color:var(--white);}
+.sort-select{
+  flex-shrink:0;background:var(--white);border:1.5px solid var(--cream-2);border-radius:999px;
+  padding:11px 16px;font-family:inherit;font-size:0.85rem;font-weight:700;color:var(--plum);
+  box-shadow:0 3px 10px rgba(74,47,68,0.05);cursor:pointer;
+}
+.results-count{text-align:center;color:#9a8a83;font-size:0.83rem;font-weight:700;margin-bottom:16px;}
+.carousel.grid-view{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;overflow:visible;scroll-snap-type:none;padding:10px 4px 10px;}
+.carousel.grid-view .card{flex:none;max-width:none;width:100%;}
+.carousel.grid-view .card-body{padding:12px 12px 14px;gap:6px;}
+.carousel.grid-view .card-body h3{font-size:0.92rem;line-height:1.3;}
+.carousel.grid-view .price{font-size:1rem;}
+.carousel.grid-view .card-actions{flex-direction:column;gap:6px;}
+.carousel.grid-view .view-btn{padding:9px 12px;font-size:0.78rem;}
+.carousel.grid-view .add-btn{padding:9px 12px;font-size:0.8rem;}
+@media(min-width:640px){ .carousel.grid-view{grid-template-columns:repeat(3,1fr);gap:18px;} .carousel.grid-view .card-actions{flex-direction:row;} }
+@media(min-width:960px){ .carousel.grid-view{grid-template-columns:repeat(4,1fr);} }
 .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .feature-card,.step,.team-card{background:var(--white);border-radius:18px;padding:24px;box-shadow:var(--shadow);border:1px solid rgba(74,47,68,.06)}
 .feature-icon{font-size:2rem;margin-bottom:12px}
@@ -560,6 +650,27 @@
     <h2>Our Handmade Pieces</h2>
     <p class="section-sub">Keychains, hair accessories, bows and everlasting crochet bouquets — every piece made stitch by stitch, to order.</p>
   </div>
+  <div class="shop-toolbar">
+    <div class="search-box">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input type="text" id="productSearch" placeholder="Search products…">
+    </div>
+    <select class="sort-select" id="sortSelect">
+      <option value="default">Sort: Featured</option>
+      <option value="price-asc">Price: Low to High</option>
+      <option value="price-desc">Price: High to Low</option>
+      <option value="name-asc">Name: A to Z</option>
+    </select>
+    <div class="view-toggle" id="viewToggle">
+      <button class="view-btn-toggle" data-view="scroll" title="Scroll view">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="6" height="12" rx="1"/><rect x="10" y="6" width="6" height="12" rx="1"/><rect x="17" y="6" width="4" height="12" rx="1"/></svg>
+      </button>
+      <button class="view-btn-toggle active" data-view="grid" title="Grid view">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="results-count" id="resultsCount"></div>
   <div class="filter-row" id="filterRow">
     <button class="filter-chip active" data-filter="all">All Pieces</button>
     <button class="filter-chip" data-filter="keychains">Keychains</button>
@@ -568,7 +679,17 @@
     <button class="filter-chip" data-filter="bouquets">Bouquets &amp; Flowers</button>
   </div>
   <div class="carousel-wrap">
-    <div class="carousel" id="carousel"></div>
+    <div class="carousel grid-view" id="carousel"></div>
+  </div>
+</section>
+
+<section id="recentlyViewed" style="display:none;padding-top:0;">
+  <div class="section-head" style="margin-bottom:20px;">
+    <div class="eyebrow">Just Looked At</div>
+    <h2 style="font-size:1.5rem;">Recently Viewed</h2>
+  </div>
+  <div class="carousel-wrap">
+    <div class="carousel" id="recentlyViewedCarousel"></div>
   </div>
 </section>
 
@@ -710,6 +831,7 @@
   <p>Instagram · <a class="email" href="https://instagram.com/little_loopcrochet" target="_blank" rel="noopener">@little_loopcrochet</a></p>
   <p>Founder · <a class="email" href="https://www.instagram.com/hussainatifa?igsh=aXo4b2sya3V5YzR1&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@hussainatifa</a> · Manager &amp; Creator · <a class="email" href="https://www.instagram.com/axr.md?igsh=dzVwdnk2NzIzcnFt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@axr.md</a></p>
   <p>© 2026 little_loopcrochet. All loops reserved.</p>
+  <p style="margin-top:16px;opacity:.55;font-size:0.78rem;">This page is designed, coded and created by <a class="email" href="https://www.instagram.com/axr.md?igsh=dzVwdnk2NzIzcnFt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacQiaIJ5KJjMGlA32hjyu9FLY8nVWO7zaQLxYhYzURYSOKXboeTobhckaeQTA_aem_BhzrUL-MHpkKBSRljItG-g" target="_blank" rel="noopener">@axr.md</a> — Full Professional</p>
 </footer>
 
 <!-- Floating buttons -->
@@ -718,9 +840,18 @@
   <span class="count" id="cartCount">0</span>
 </button>
 
+<button class="floating fab-wish" id="wishFab" aria-label="Open wishlist">
+  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.6-4.6-10.1-9.2C0.2 8.3 2 4.7 5.6 4.1c2-.3 3.9.6 5 2.2 1.1-1.6 3-2.5 5-2.2 3.6.6 5.4 4.2 3.7 7.7C19.6 16.4 12 21 12 21z"/></svg>
+  <span class="count" id="wishCount">0</span>
+</button>
+
 <a class="floating fab-wa" href="https://wa.me/917002284440" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.32A8.8 8.8 0 0 0 12.02 3.5c-4.86 0-8.8 3.94-8.8 8.8 0 1.55.4 3.06 1.17 4.4L3.5 21.5l4.93-1.29a8.8 8.8 0 0 0 3.6.76h.01c4.86 0 8.8-3.94 8.8-8.8 0-2.35-.92-4.56-2.24-6.85zM12.03 19.4h-.01a7.3 7.3 0 0 1-3.72-1.02l-.27-.16-2.77.73.74-2.7-.18-.28a7.3 7.3 0 0 1-1.12-3.89c0-4.04 3.29-7.33 7.34-7.33a7.29 7.29 0 0 1 7.32 7.34c0 4.04-3.29 7.31-7.33 7.31zm4.02-5.48c-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11-.15.22-.57.71-.7.85-.13.15-.26.16-.48.05-.22-.11-.93-.34-1.77-1.09-.65-.58-1.09-1.3-1.22-1.52-.13-.22-.01-.34.1-.45.1-.1.22-.26.33-.39.11-.13.15-.22.22-.37.07-.15.04-.28-.02-.39-.06-.11-.5-1.21-.69-1.66-.18-.43-.36-.37-.5-.38h-.43c-.15 0-.39.06-.59.28-.2.22-.78.76-.78 1.85 0 1.09.8 2.14.91 2.29.11.15 1.57 2.4 3.81 3.36.53.23.95.37 1.27.47.53.17 1.02.15 1.4.09.43-.06 1.3-.53 1.48-1.04.18-.51.18-.95.13-1.04-.05-.1-.2-.15-.42-.26z"/></svg>
 </a>
+
+<button class="floating fab-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
 
 <!-- Cart drawer -->
 <div class="overlay" id="overlay"></div>
@@ -736,6 +867,15 @@
   </div>
 </div>
 
+<!-- Wishlist drawer -->
+<div class="drawer" id="wishlistDrawer">
+  <div class="drawer-head">
+    <h3>Your Wishlist</h3>
+    <button class="close-btn" id="closeWishlistDrawer">✕</button>
+  </div>
+  <div class="cart-items" id="wishlistItems"></div>
+</div>
+
 <!-- PRODUCT DETAIL MODAL -->
 <div class="detail-overlay" id="detailOverlay">
   <div class="detail-modal" id="detailModal"></div>
@@ -745,7 +885,7 @@
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal">
     <h3>Complete your order</h3>
-    <p class="hint">We'll email your order straight to the shop.</p>
+    <p class="hint">Fill in your details, then choose how you'd like to send your order.</p>
     <form id="orderForm">
       <div class="field">
         <label for="custName">Full name</label>
@@ -759,9 +899,13 @@
         <label for="custAddress">Delivery address</label>
         <textarea id="custAddress" required placeholder="House no, street, city, pincode"></textarea>
       </div>
-      <div class="modal-actions">
-        <button type="button" class="btn btn-secondary" id="cancelOrder">Cancel</button>
-        <button type="submit" class="btn btn-primary" id="submitOrder" style="flex:1;">Submit Order</button>
+      <div class="order-method-actions">
+        <button type="button" class="btn btn-whatsapp btn-full" id="orderViaWhatsApp">
+          <svg viewBox="0 0 32 32" width="20" height="20" fill="currentColor"><path d="M16.02 3C9.4 3 4 8.4 4 15.02c0 2.35.65 4.55 1.78 6.44L4 29l7.72-1.75a11.9 11.9 0 0 0 4.3.8h.01C22.65 28.05 28 22.65 28 16.02 28 9.4 22.65 3 16.02 3zm0 21.6c-1.32 0-2.63-.35-3.78-1.02l-.27-.16-4.58 1.04 1.06-4.47-.18-.28a9.5 9.5 0 0 1-1.47-5.09c0-5.26 4.28-9.54 9.54-9.54 2.55 0 4.94.99 6.75 2.79a9.48 9.48 0 0 1 2.79 6.75c0 5.26-4.29 8.98-9.86 8.98zm5.24-6.99c-.29-.14-1.7-.84-1.96-.93-.26-.1-.46-.14-.65.14-.19.29-.75.93-.92 1.12-.17.19-.34.21-.63.07-.29-.14-1.21-.45-2.31-1.43-.85-.76-1.43-1.7-1.6-1.98-.17-.29-.02-.44.13-.58.13-.13.29-.34.43-.5.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.5-.07-.14-.65-1.57-.9-2.15-.24-.57-.48-.49-.65-.5h-.56c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38 0 1.4 1.02 2.76 1.17 2.95.14.19 2.01 3.08 4.88 4.31.68.29 1.22.47 1.63.6.68.22 1.31.19 1.8.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.33z"/></svg>
+          Order via WhatsApp
+        </button>
+        <button type="button" class="btn btn-secondary btn-full" id="orderViaEmail">✉️ Order via Email</button>
+        <button type="button" class="btn-cancel-link" id="cancelOrder">Cancel</button>
       </div>
       <div class="status-msg" id="orderStatus"></div>
     </form>
@@ -831,58 +975,7 @@ const PRODUCTS = [
     desc: "Hand-crocheted sunflower stems, priced per stick — add as many as you like to build your own bouquet." },
   { id: "p18", name: "Sunflower Bouquet (₹250 per stick)", price: 250, cat: "bouquets",
     img: "https://i.ibb.co/5hXQs22N/little-loopcrochet-20260809-0020.jpg",
-    desc: "A gathered bouquet of hand-crocheted sunflowers, priced per stick — a lasting, sunny gift." },
-  { id: "p19", name: "Double Heart Pearl Hair Clips", price: 60, cat: "hair",
-    img: "https://i.ibb.co/G4PBVkVD/little-loopcrochet-20260809-0021.jpg",
-    desc: "A charming pair of stacked crochet heart hair clips in pink and red, accented with a delicate pearl in the center." },
-  { 
-  "id": "p20", 
-  "name": "Single Heart Pearl Hair Clips", 
-  "price": 55, 
-  "cat": "hair",
-  "img": "https://i.ibb.co/zT0bQscW/little-loopcrochet-20260809-0022.jpg",
-  "desc": "A sweet pair of vibrant pink crochet heart hair clips, each beautifully finished with a single pearl accent in the center." 
-  },
-  {
-    "id": "p24",
-    "name": "Pink Blossom Hanging Decor",
-    "price": 150,
-    "cat": "hair",
-    "img": "https://i.ibb.co/PGGTSjgf/little-loopcrochet-20260809-0023.jpg",
-    "desc": "A charming handmade crochet hanging decor featuring pretty pink blossoms with contrast centers, graceful green leaves, and a sturdy loop."
-  },
-  {
-    "id": "p25",
-    "name": "Pink Tulip Hanging Decor",
-    "price": 150,
-    "cat": "hair",
-    "img": "https://i.ibb.co/ycknKwJZ/little-loopcrochet-20260809-0024.jpg",
-    "desc": "A delicate handcrafted crochet hanging piece featuring soft pink tulip-style flowers, vibrant green leaves, and a durable hanging loop."
-  },
-  {
-    "id": "p26",
-    "name": "Sunflower Hanging Decor",
-    "price": 150,
-    "cat": "hair",
-    "img": "https://i.ibb.co/BVcJ4GJD/little-loopcrochet-20260809-0025.jpg",
-    "desc": "A cheerful handmade crochet sunflower hanging decor featuring vibrant yellow petals, rich brown centers, green leaves, and a sturdy loop."
-  },
-  {
-    "id": "p27",
-    "name": "Sunshine Bloom Flower Pot",
-    "price": 199,
-    "cat": "Bouquets",
-    "img": "https://i.ibb.co/Zp4dYnkp/little-loopcrochet-20260809-0026.jpg",
-    "desc": "A cheerful handcrafted sunflower flower pot featuring bright petals, a textured center, elegant leaves, and a decorative pot with a ribbon accent."
-  },
-  {
-    "id": "p28",
-    "name": "Tulip Bloom Flower Pot",
-    "price": 199,
-    "cat": "Bouquets",
-    "img": "https://i.ibb.co/2Y0qhQGq/little-loopcrochet-20260809-0027.jpg",
-    "desc": "A timeless handmade tulip bouquet in a charming pot, crafted with premium quality materials to bring warmth and a realistic design to any special moment."
-    },
+    desc: "A gathered bouquet of hand-crocheted sunflowers, priced per stick — a lasting, sunny gift." }
 ];
 
 /* ---------- STATE ---------- */
@@ -926,15 +1019,34 @@ function getProductById(id){
   return PRODUCTS.find(p => p.id === id);
 }
 /* ---------- RENDER PRODUCT CARDS ---------- */
+const CATEGORY_TAGS = {
+  keychains: '#KeychainCharm',
+  hair: '#HairDetail',
+  bows: '#BowStyle',
+  bouquets: '#ForeverBloom'
+};
+let wishlist = new Set();
+try { wishlist = new Set(JSON.parse(localStorage.getItem('llc_wishlist') || '[]')); } catch(e){ wishlist = new Set(); }
+function saveWishlist(){
+  try { localStorage.setItem('llc_wishlist', JSON.stringify([...wishlist])); } catch(e){}
+}
 const carousel = document.getElementById('carousel');
-PRODUCTS.forEach(p => {
+PRODUCTS.forEach((p, idx) => {
   const card = document.createElement('div');
   card.className = 'card';
+  card.dataset.id2 = p.id;
+  card.dataset.order = idx;
   const rCount = getReviews(p.id).length;
   const rAvg = avgRating(p.id);
   card.innerHTML = `
-    <div class="card-img" data-id="${p.id}"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+    <div class="card-img" data-id="${p.id}">
+      <img src="${p.img}" alt="${p.name}" loading="lazy">
+      <button class="wishlist-btn" data-id="${p.id}" aria-label="Save to wishlist">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7.6-4.6-10.1-9.2C0.2 8.3 2 4.7 5.6 4.1c2-.3 3.9.6 5 2.2 1.1-1.6 3-2.5 5-2.2 3.6.6 5.4 4.2 3.7 7.7C19.6 16.4 12 21 12 21z"/></svg>
+      </button>
+    </div>
     <div class="card-body">
+      <span class="card-tag">${CATEGORY_TAGS[p.cat] || '#Handmade'}</span>
       <h3 data-id="${p.id}">${p.name}</h3>
       <div class="card-rating" data-rating-for="${p.id}">
         ${rCount ? `<span class="stars">${starString(rAvg)}</span><span>(${rCount})</span>` : `<span>No reviews yet</span>`}
@@ -947,33 +1059,127 @@ PRODUCTS.forEach(p => {
     </div>
   `;
   card.dataset.cat = p.cat;
+  card.dataset.name = p.name.toLowerCase();
+  if (wishlist.has(p.id)) card.querySelector('.wishlist-btn').classList.add('active');
   carousel.appendChild(card);
 });
 
+/* ---------- RECENTLY VIEWED ---------- */
+const recentlyViewedSection = document.getElementById('recentlyViewed');
+const recentlyViewedCarousel = document.getElementById('recentlyViewedCarousel');
+let recentlyViewed = [];
+try { recentlyViewed = JSON.parse(localStorage.getItem('llc_recently_viewed') || '[]'); } catch(e){ recentlyViewed = []; }
+
+function addToRecentlyViewed(id){
+  recentlyViewed = recentlyViewed.filter(x => x !== id);
+  recentlyViewed.unshift(id);
+  recentlyViewed = recentlyViewed.slice(0, 8);
+  try { localStorage.setItem('llc_recently_viewed', JSON.stringify(recentlyViewed)); } catch(e){}
+  renderRecentlyViewed();
+}
+
+function renderRecentlyViewed(){
+  const items = recentlyViewed.map(id => getProductById(id)).filter(Boolean).filter(p => p.id !== currentDetailId);
+  if (items.length === 0){
+    recentlyViewedSection.style.display = 'none';
+    return;
+  }
+  recentlyViewedSection.style.display = '';
+  recentlyViewedCarousel.innerHTML = items.map(p => `
+    <div class="card" data-id="${p.id}" style="cursor:pointer;">
+      <div class="card-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+      <div class="card-body">
+        <h3>${p.name}</h3>
+        <div class="price">${p.price}</div>
+      </div>
+    </div>
+  `).join('');
+}
+recentlyViewedCarousel.addEventListener('click', e => {
+  const card = e.target.closest('.card');
+  if (card) openDetail(card.dataset.id);
+});
+renderRecentlyViewed();
+
 const filterRow = document.getElementById('filterRow');
+const searchInput = document.getElementById('productSearch');
+const viewToggle = document.getElementById('viewToggle');
+const sortSelect = document.getElementById('sortSelect');
+const resultsCount = document.getElementById('resultsCount');
+let activeCategory = 'all';
+
+function applyFilters(){
+  const term = searchInput.value.trim().toLowerCase();
+  let visible = 0;
+  [...carousel.children].forEach(card => {
+    const matchesCat = activeCategory === 'all' || card.dataset.cat === activeCategory;
+    const matchesSearch = !term || card.dataset.name.includes(term);
+    const show = matchesCat && matchesSearch;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+  resultsCount.textContent = `Showing ${visible} of ${PRODUCTS.length} pieces`;
+}
+
+function applySort(){
+  const mode = sortSelect.value;
+  const cards = [...carousel.children];
+  const sorters = {
+    'price-asc': (a,b) => getProductById(a.dataset.id2).price - getProductById(b.dataset.id2).price,
+    'price-desc': (a,b) => getProductById(b.dataset.id2).price - getProductById(a.dataset.id2).price,
+    'name-asc': (a,b) => a.dataset.name.localeCompare(b.dataset.name)
+  };
+  if (mode === 'default'){
+    cards.sort((a,b) => a.dataset.order - b.dataset.order);
+  } else {
+    cards.sort(sorters[mode]);
+  }
+  cards.forEach(c => carousel.appendChild(c));
+}
+
 filterRow.addEventListener('click', e => {
   const chip = e.target.closest('.filter-chip');
   if (!chip) return;
   [...filterRow.children].forEach(c => c.classList.remove('active'));
   chip.classList.add('active');
-  const filter = chip.dataset.filter;
-  [...carousel.children].forEach(card => {
-    card.classList.toggle('hidden', filter !== 'all' && card.dataset.cat !== filter);
-  });
+  activeCategory = chip.dataset.filter;
+  applyFilters();
 });
+
+searchInput.addEventListener('input', applyFilters);
+sortSelect.addEventListener('change', applySort);
+
+viewToggle.addEventListener('click', e => {
+  const btn = e.target.closest('.view-btn-toggle');
+  if (!btn) return;
+  [...viewToggle.children].forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  carousel.classList.toggle('grid-view', btn.dataset.view === 'grid');
+});
+
+applyFilters();
 
 carousel.addEventListener('click', e => {
   const addBtn = e.target.closest('.add-btn');
   const viewBtn = e.target.closest('.view-btn');
+  const wishBtn = e.target.closest('.wishlist-btn');
   const img = e.target.closest('.card-img');
   const title = e.target.closest('h3');
 
+  if (wishBtn){
+    const id = wishBtn.dataset.id;
+    if (wishlist.has(id)){ wishlist.delete(id); wishBtn.classList.remove('active'); }
+    else { wishlist.add(id); wishBtn.classList.add('active'); }
+    saveWishlist();
+    document.getElementById('wishCount').textContent = wishlist.size;
+    return;
+  }
   if (addBtn){
     const id = addBtn.dataset.id;
+    if (cart[id] > 0){ openDrawer(); return; }
     cart[id] = (cart[id] || 0) + 1;
     addBtn.textContent = "Added ✓";
     addBtn.classList.add('added');
-    setTimeout(() => { addBtn.textContent = "Add to Cart"; addBtn.classList.remove('added'); }, 900);
     renderCart();
     return;
   }
@@ -981,6 +1187,20 @@ carousel.addEventListener('click', e => {
   if (img){ openDetail(img.dataset.id); return; }
   if (title){ openDetail(title.dataset.id); return; }
 });
+
+function updateCardButtons(){
+  [...carousel.querySelectorAll('.add-btn')].forEach(btn => {
+    const id = btn.dataset.id;
+    if (cart[id] > 0){
+      btn.textContent = "Go to Cart";
+      btn.classList.add('in-cart');
+      btn.classList.remove('added');
+    } else {
+      btn.textContent = "Add to Cart";
+      btn.classList.remove('in-cart', 'added');
+    }
+  });
+}
 
 function sendOrderViaWhatsApp(payload, itemsText, total){
   const message = encodeURIComponent(
@@ -1003,12 +1223,61 @@ function openDetail(id){
   pickedPhoto = null;
   renderDetail(id);
   detailOverlay.classList.add('open');
+  addToRecentlyViewed(id);
 }
 function closeDetail(){
   detailOverlay.classList.remove('open');
   currentDetailId = null;
 }
 detailOverlay.addEventListener('click', e => { if (e.target === detailOverlay) closeDetail(); });
+
+function getSimilarProducts(p, count=6){
+  return PRODUCTS.filter(x => x.cat === p.cat && x.id !== p.id).slice(0, count);
+}
+function getRecentlyViewedExcept(id, count=6){
+  return recentlyViewed.filter(x => x !== id).map(getProductById).filter(Boolean).slice(0, count);
+}
+function getMoreForYou(p, excludeIds, count=6){
+  const pool = PRODUCTS.filter(x => x.id !== p.id && !excludeIds.includes(x.id));
+  return pool.slice(0, count);
+}
+function miniRailHTML(title, items){
+  if (!items.length) return '';
+  return `
+    <div class="mini-rail">
+      <h3 class="mini-rail-title">${title}</h3>
+      <div class="carousel mini-carousel">
+        ${items.map(p => `
+          <div class="card mini-card" data-id="${p.id}">
+            <div class="card-img"><img src="${p.img}" alt="${p.name}" loading="lazy"></div>
+            <div class="card-body">
+              <h3>${p.name}</h3>
+              <div class="price">${p.price}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+detailModal.addEventListener('click', e => {
+  const miniCard = e.target.closest('.mini-card');
+  if (miniCard){ openDetail(miniCard.dataset.id); return; }
+
+  const dqa = e.target.closest('.dqa-item');
+  if (dqa){
+    const prod = getProductById(dqa.dataset.pid);
+    if (!prod) return;
+    const templates = {
+      customize: `Hi! I'd like to customize "${prod.name}" (₹${prod.price}) — could you tell me what colour/size options are available? — little_loopcrochet`,
+      ask: `Hi! I have a question about "${prod.name}" (₹${prod.price}) on little_loopcrochet. ${prod.img}`,
+      contact: `Hi! Could you share more details about "${prod.name}" (₹${prod.price}) on little_loopcrochet?`
+    };
+    const message = encodeURIComponent(templates[dqa.dataset.action] || templates.ask);
+    window.open(`https://wa.me/${ORDER_WHATSAPP}?text=${message}`, "_blank", "noopener");
+  }
+});
 
 function renderDetail(id){
   const p = PRODUCTS.find(x => x.id === id);
@@ -1017,6 +1286,9 @@ function renderDetail(id){
 
   detailModal.innerHTML = `
     <button class="detail-close" id="detailCloseBtn">✕</button>
+    <button class="detail-share" id="detailShareBtn" title="Share this piece">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-3.9M8.6 13.5l6.8 3.9"/></svg>
+    </button>
     <div class="detail-img"><img src="${p.img}" alt="${p.name}"></div>
     <div class="detail-body">
       <h2>${p.name}</h2>
@@ -1037,6 +1309,20 @@ function renderDetail(id){
       </div>
       <div class="detail-actions">
         <button class="btn btn-primary" id="detailAddBtn" style="flex:1;justify-content:center;">Add to Cart</button>
+      </div>
+      <div class="detail-quick-actions">
+        <button class="dqa-item" data-action="customize" data-pid="${p.id}">
+          <span class="dqa-icon">🎨</span>
+          <span>Customize<br>This Product</span>
+        </button>
+        <button class="dqa-item" data-action="ask" data-pid="${p.id}">
+          <span class="dqa-icon">💬</span>
+          <span>Ask Something<br>About This</span>
+        </button>
+        <button class="dqa-item" data-action="contact" data-pid="${p.id}">
+          <span class="dqa-icon">📞</span>
+          <span>Contact for<br>More Details</span>
+        </button>
       </div>
     </div>
 
@@ -1083,9 +1369,30 @@ function renderDetail(id){
         `).join('') : `<div class="review-empty">No reviews yet for this product.</div>`}
       </div>
     </div>
+
+    ${miniRailHTML('Similar Products', getSimilarProducts(p))}
+    ${miniRailHTML('Recently Viewed', getRecentlyViewedExcept(p.id))}
+    ${miniRailHTML('More Products For You', getMoreForYou(p, [
+        ...getSimilarProducts(p).map(x => x.id),
+        ...getRecentlyViewedExcept(p.id).map(x => x.id)
+      ]))}
   `;
 
   document.getElementById('detailCloseBtn').addEventListener('click', closeDetail);
+  document.getElementById('detailShareBtn').addEventListener('click', async () => {
+    const shareBtn = document.getElementById('detailShareBtn');
+    const shareText = `${p.name} — ₹${p.price} on little_loopcrochet\n${p.img}`;
+    if (navigator.share){
+      try { await navigator.share({ title: p.name, text: shareText }); } catch(e){}
+    } else {
+      try {
+        await navigator.clipboard.writeText(shareText);
+        const original = shareBtn.innerHTML;
+        shareBtn.innerHTML = '✓';
+        setTimeout(() => { shareBtn.innerHTML = original; }, 1200);
+      } catch(e){}
+    }
+  });
 
   let qty = 1;
   const qtyVal = document.getElementById('detQtyVal');
@@ -1203,12 +1510,70 @@ function openDrawer(){ drawer.classList.add('open'); overlay.classList.add('open
 function closeDrawerFn(){ drawer.classList.remove('open'); overlay.classList.remove('open'); }
 cartFab.addEventListener('click', openDrawer);
 closeDrawer.addEventListener('click', closeDrawerFn);
-overlay.addEventListener('click', () => { closeDrawerFn(); closeModal(); });
+overlay.addEventListener('click', () => { closeDrawerFn(); closeWishlistDrawerFn(); closeModal(); });
+
+/* ---------- WISHLIST DRAWER ---------- */
+const wishlistDrawer = document.getElementById('wishlistDrawer');
+const wishFab = document.getElementById('wishFab');
+const closeWishlistDrawer = document.getElementById('closeWishlistDrawer');
+const wishlistItemsEl = document.getElementById('wishlistItems');
+const wishCountEl = document.getElementById('wishCount');
+
+function openWishlistDrawer(){ renderWishlistDrawer(); wishlistDrawer.classList.add('open'); overlay.classList.add('open'); }
+function closeWishlistDrawerFn(){ wishlistDrawer.classList.remove('open'); overlay.classList.remove('open'); }
+wishFab.addEventListener('click', openWishlistDrawer);
+closeWishlistDrawer.addEventListener('click', closeWishlistDrawerFn);
+
+function renderWishlistDrawer(){
+  wishCountEl.textContent = wishlist.size;
+  const ids = [...wishlist];
+  if (ids.length === 0){
+    wishlistItemsEl.innerHTML = `<div class="cart-empty">Your wishlist is empty.<br>Tap ♡ on any piece to save it here. 💕</div>`;
+    return;
+  }
+  wishlistItemsEl.innerHTML = ids.map(id => {
+    const p = getProductById(id);
+    if (!p) return '';
+    return `
+      <div class="cart-row" data-id="${id}">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="info">
+          <h4>${p.name}</h4>
+          <span>₹${p.price}</span>
+        </div>
+        <button class="btn btn-secondary wish-add-btn" data-id="${id}" style="padding:8px 12px;font-size:0.78rem;">Add to Cart</button>
+        <span class="remove-btn" data-wish-remove="${id}">Remove</span>
+      </div>
+    `;
+  }).join('');
+}
+
+wishlistItemsEl.addEventListener('click', e => {
+  const addBtn = e.target.closest('.wish-add-btn');
+  const removeBtn = e.target.closest('[data-wish-remove]');
+  if (addBtn){
+    const id = addBtn.dataset.id;
+    cart[id] = (cart[id] || 0) + 1;
+    renderCart();
+    addBtn.textContent = "Added ✓";
+    setTimeout(() => { addBtn.textContent = "Add to Cart"; }, 900);
+    return;
+  }
+  if (removeBtn){
+    const id = removeBtn.dataset.wishRemove;
+    wishlist.delete(id);
+    saveWishlist();
+    const cardWish = carousel.querySelector(`.wishlist-btn[data-id="${id}"]`);
+    if (cardWish) cardWish.classList.remove('active');
+    renderWishlistDrawer();
+  }
+});
 
 function renderCart(){
   const ids = Object.keys(cart).filter(id => cart[id] > 0);
   const totalCount = ids.reduce((sum,id) => sum + cart[id], 0);
   cartCountEl.textContent = totalCount;
+  updateCardButtons();
 
   if (ids.length === 0){
     cartItemsEl.innerHTML = `<div class="cart-empty">Your cart is empty.<br>Add something handmade! 🧶</div>`;
@@ -1281,8 +1646,10 @@ function buildOrderSummary(){
   return { lines, total };
 }
 
-orderForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
+orderForm.addEventListener('submit', e => e.preventDefault());
+
+async function submitOrder(method){
+  if (!orderForm.reportValidity()) return;
   const name = document.getElementById('custName').value.trim();
   const phone = document.getElementById('custPhone').value.trim();
   const address = document.getElementById('custAddress').value.trim();
@@ -1299,49 +1666,59 @@ orderForm.addEventListener('submit', async (e) => {
     email: SHOP_EMAIL
   };
 
-  const submitBtn = document.getElementById('submitOrder');
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Sending…";
+  const waBtn = document.getElementById('orderViaWhatsApp');
+  const emailBtn = document.getElementById('orderViaEmail');
+  waBtn.disabled = true;
+  emailBtn.disabled = true;
   orderStatus.textContent = "";
   orderStatus.className = "status-msg";
 
-  const usingFormspree = FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes("YOUR_FORM_ID");
-
-  if (usingFormspree){
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", "Accept": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (res.ok){
-        // Also open WhatsApp with the same order details for the shop.
-        sendOrderViaWhatsApp(payload, itemsText, total);
-        orderStatus.textContent = "Order sent! We'll be in touch on WhatsApp/phone shortly. 🧶";
-        orderStatus.classList.add('success');
-        cart = {};
-        renderCart();
-        setTimeout(() => { closeModal(); closeDrawerFn(); orderForm.reset(); }, 1800);
-      } else {
-        throw new Error("Formspree responded with an error");
-      }
-    } catch (err){
-      orderStatus.textContent = "Couldn't send automatically — opening your email app instead.";
-      orderStatus.classList.add('error');
-      sendViaMailto(payload, itemsText, total);
-    }
-  } else {
-    sendViaMailto(payload, itemsText, total);
-    orderStatus.textContent = "Opening your email app to send this order…";
+  if (method === 'whatsapp'){
+    sendOrderViaWhatsApp(payload, itemsText, total);
+    orderStatus.textContent = "Opening WhatsApp with your order details… 🧶";
     orderStatus.classList.add('success');
     cart = {};
     renderCart();
     setTimeout(() => { closeModal(); closeDrawerFn(); orderForm.reset(); }, 1800);
+  } else {
+    const usingFormspree = FORMSPREE_ENDPOINT && !FORMSPREE_ENDPOINT.includes("YOUR_FORM_ID");
+    if (usingFormspree){
+      try {
+        const res = await fetch(FORMSPREE_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        if (res.ok){
+          orderStatus.textContent = "Order emailed! We'll be in touch shortly. 🧶";
+          orderStatus.classList.add('success');
+          cart = {};
+          renderCart();
+          setTimeout(() => { closeModal(); closeDrawerFn(); orderForm.reset(); }, 1800);
+        } else {
+          throw new Error("Formspree responded with an error");
+        }
+      } catch (err){
+        orderStatus.textContent = "Couldn't send automatically — opening your email app instead.";
+        orderStatus.classList.add('error');
+        sendViaMailto(payload, itemsText, total);
+      }
+    } else {
+      sendViaMailto(payload, itemsText, total);
+      orderStatus.textContent = "Opening your email app to send this order…";
+      orderStatus.classList.add('success');
+      cart = {};
+      renderCart();
+      setTimeout(() => { closeModal(); closeDrawerFn(); orderForm.reset(); }, 1800);
+    }
   }
 
-  submitBtn.disabled = false;
-  submitBtn.textContent = "Submit Order";
-});
+  waBtn.disabled = false;
+  emailBtn.disabled = false;
+}
+
+document.getElementById('orderViaWhatsApp').addEventListener('click', () => submitOrder('whatsapp'));
+document.getElementById('orderViaEmail').addEventListener('click', () => submitOrder('email'));
 
 function sendViaMailto(payload, itemsText, total){
   const subject = encodeURIComponent(`New order from ${payload.customer_name} — little_loopcrochet`);
@@ -1355,6 +1732,13 @@ function sendViaMailto(payload, itemsText, total){
   window.location.href = `mailto:${SHOP_EMAIL}?subject=${subject}&body=${body}`;
 }
 
+const backToTop = document.getElementById('backToTop');
+window.addEventListener('scroll', () => {
+  backToTop.classList.toggle('visible', window.scrollY > 500);
+});
+backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+document.getElementById('wishCount').textContent = wishlist.size;
 renderCart();
 </script>
 </body>

@@ -1,0 +1,19 @@
+{
+  "name": "littleloopcrochet",
+  "version": "1.0.0",
+  "description": "Handmade crochet keychains, hair accessories, bows and everlasting bouquets",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"No tests specified\""
+  },
+  "keywords": [
+    "crochet",
+    "handmade",
+    "crafts"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
